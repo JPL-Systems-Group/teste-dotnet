@@ -23,7 +23,6 @@ public sealed class InfrastructureServiceCollectionExtensionsTests
             .Build();
 
         var services = new ServiceCollection();
-        services.AddLogging();
         services.AddInfrastructure(config);
 
         using var provider = services.BuildServiceProvider();

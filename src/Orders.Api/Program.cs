@@ -1,5 +1,4 @@
 using System.Diagnostics.Metrics;
-using Microsoft.EntityFrameworkCore;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -44,10 +43,10 @@ builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
-await using (var scope = app.Services.CreateAsyncScope())
+using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<OrdersDbContext>();
-    await dbContext.Database.MigrateAsync();
+    dbContext.Database.EnsureCreated();
 }
 
 app.UseMiddleware<GlobalExceptionMiddleware>();

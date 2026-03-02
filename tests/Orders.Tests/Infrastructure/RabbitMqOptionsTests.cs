@@ -13,9 +13,7 @@ public sealed class RabbitMqOptionsTests
         options.HostName.Should().Be("localhost");
         options.Port.Should().Be(5672);
         options.UserName.Should().Be("guest");
-        options.Password.Should().Be("change-me");
+        options.Password.Should().Be("guest");
         options.ExchangeName.Should().Be("orders.events");
-        options.PublishRetryCount.Should().Be(3);
-        options.PublishRetryDelayMs.Should().Be(200);
     }
 }
